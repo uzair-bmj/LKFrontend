@@ -91,7 +91,7 @@ export default function Sales() {
                             {
                                 salesData && salesData.map((items, index) => (
                                     <div className="border-t border-gray-200 odd:bg-gray-200 p-4" key={index}>
-                                        <div className="lg:grid lg:grid-cols-5 lg:gap-4 lg:py-4 lg:px-6 flex flex-col gap-y-5 sm:block">
+                                        <div className="lg:grid lg:grid-cols-5 lg:gap-4 lg:py-2  flex flex-col gap-y-5 sm:block">
                                             {/* Customer */}
                                             <div className="flex justify-between gap-x-5 w-full items-center sm:mb-4 ">
                                                 <p className="text-xs font-medium lg:hidden block text-gray-500">Customer:</p>
@@ -108,7 +108,7 @@ export default function Sales() {
                                                 <p className="text-xs lg:hidden block font-medium text-gray-500">Product Image:</p>
                                                 <img
                                                     src={items.productImage}
-                                                    className="w-[20vw] sm:w-10 h-20 sm:h-10"
+                                                    className="w-[20vw] ms-6 sm:w-10 h-20 sm:h-10"
                                                     alt=""
                                                 />
                                             </div>
