@@ -33,8 +33,8 @@ function App() {
                 <Route path='/dashboard/sales' element={<Sales />} />
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
-                <Route path='/payments/successfull' element={<PaymentSuccessfull />} />
-                <Route path='/payments/cancelled' element={<PaymentCancelled />} />
+                <Route path='payments/successfull' element={<PaymentSuccessfull />} />
+                <Route path='payments/cancelled' element={<PaymentCancelled />} />
                 
               </Routes>
             </div>
