@@ -36,16 +36,16 @@ export default function Sales() {
             const allPurchases = approvedPosts.flatMap(post => post.purchasedBy);
             setsalesData(allPurchases);
             settotalSales(allPurchases.length);
-            const totalEarning = salesData.reduce((acc, item) => {
+            const TotalEarning = salesData.reduce((acc, item) => {
                 return acc += item.amount
             }, 0)
-            console.log(totalEarning);
-            settotalEarning(totalEarning)
+            console.log(TotalEarning);
+            settotalEarning(TotalEarning)
 
 
         }
         fetchPosts()
-    }, [isSignedIn, nav])
+    }, [isSignedIn, nav , totalEarning])
 
 
 

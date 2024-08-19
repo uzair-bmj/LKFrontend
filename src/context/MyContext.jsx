@@ -9,6 +9,7 @@ export default function MyContextProvider({ children }) {
     const [errorModal, seterrorModal] = useState(false)
     const [postSuccess, setpostSuccess] = useState(false)
     const [modal, setmodal] = useState(false)
+    const [totalEarnings, settotalEarnings] = useState()
     const [userId, setuserId] = useState(localStorage.getItem('userId') || "");
     const [userAvatar, setuserAvatar] = useState(localStorage.getItem('userAvatar') || "");
     const [userName, setuserName] = useState(localStorage.getItem('userName') || "");
@@ -42,7 +43,7 @@ export default function MyContextProvider({ children }) {
     }, [])
 
     return (
-        <MyContext.Provider value={{ loader, setloader, PostForm, setPostForm, userId, setuserId, smallLoader, setsmallLoader, errorModal, seterrorModal, postSuccess, setpostSuccess, userAvatar, setuserAvatar, userName, setuserName, modal, setmodal, postEditHook, setpostEditHook,editPostObjHook, seteditPostObjHook }}>
+        <MyContext.Provider value={{ loader, setloader, PostForm, setPostForm, userId, setuserId, smallLoader, setsmallLoader, errorModal, seterrorModal, postSuccess, setpostSuccess, userAvatar, setuserAvatar, userName, setuserName, modal, setmodal, postEditHook, setpostEditHook,editPostObjHook, seteditPostObjHook, totalEarnings, settotalEarnings }}>
             {children}
         </MyContext.Provider>
     );
