@@ -48,6 +48,7 @@ export default function Postform() {
                 setpostSuccess(false)
             }, 5000)
         } catch (error) {
+            setsmallLoader(false)
             console.log(error.response.data.message);
             if (error.response.data.message === "No user found") {
                 seterrorModal(true)
