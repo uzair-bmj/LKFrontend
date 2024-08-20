@@ -51,12 +51,12 @@ export default function Postform() {
             setsmallLoader(false)
             console.log(error.response.data.message);
             if (error.response.data.message === "No user found") {
-                seterrorModal(true)
                 setsmallLoader(false)
+                seterrorModal(true)
                 setpopupMessage("Login first")
             } else {
-                seterrorModal(true)
                 setsmallLoader(false)
+                seterrorModal(true)
                 setpopupMessage(error.response.data.message)
             }
 
