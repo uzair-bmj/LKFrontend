@@ -140,7 +140,7 @@ export default function Home() {
     const makePayment = async (index) => {
         if (isSignedIn) {
             try {
-                setsmallLoader(true);
+                setsmallLoader(true)
                 const stripe = await loadStripe('pk_test_51Po9d2Ru0YYBHVZZWRMVQtARW4II5YaBpHoIU3nRbOC7c0NbeY5TJJFXiYhQJY70g9FGRfjXvZ8K6gJLtHZY0XH70093BJCJDK');
                 const body = {
                     name: posts[index].productName,
@@ -153,49 +153,37 @@ export default function Home() {
                         post: posts[index]._id,
                         email: user.emailAddresses[0].emailAddress,
                         userAvatar: user.imageUrl,
-                        name: user.username,
-                    },
+                        name: user.username
+                    }
                 };
                 const headers = {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 };
-    
+
                 const response = await fetch(`https://lk-1-pabn.onrender.com/api/create-checkout-session`, {
                     method: 'POST',
                     headers,
-                    body: JSON.stringify(body),
+                    body: JSON.stringify(body)
                 });
-    
-                if (!response.ok) {
-                    const text = await response.text();
-                    console.error('Error response:', text);
-                    throw new Error('Failed to create checkout session.');
-                }
-    
                 const session = await response.json();
                 const result = await stripe.redirectToCheckout({
-                    sessionId: session.id,
+                    sessionId: session.id
                 });
-    
-                setsmallLoader(false);
-    
+                setsmallLoader(false)
                 if (result.error) {
-                    console.error(result.error.message);
+                    console.log(result.error.message);
                 }
             } catch (error) {
-                setsmallLoader(false);
-                console.error('Checkout Error:', error);
-                seterrorModal(true);
-                seterror("Checkout Error");
-                setpopupMessage("Please Login First");
+                setsmallLoader(false)
+                console.log(error);
+
             }
         } else {
-            seterrorModal(true);
-            seterror("Checkout Error");
-            setpopupMessage("Please Login First");
+            seterrorModal(true)
+            seterror("Checkout Error")
+            setpopupMessage("Please Login First")
         }
     };
-    
 
 
 
