@@ -112,7 +112,7 @@ export default function Postform() {
                                 <div className='flex gap-x-3 items-center'>
                                     <h1 className='font-bold'>Price :</h1>
                                     <div className="relative mb-5">
-                                        <input id="input-field" required placeholder="Enter Price in usd" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full" type="text" onChange={(e) => setPrice(e.target.value)} />
+                                        <input id="input-field" required placeholder="Enter Price in usd" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full" type="number" onChange={(e) => setPrice(e.target.value)} />
                                         <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
                                     </div>
                                 </div>
