@@ -142,7 +142,7 @@ export default function Home() {
         if (isSignedIn) {
             try {
                 setsmallLoader(true);
-                const stripe = await loadStripe('your-stripe-publishable-key');
+                const stripe = await loadStripe('pk_test_51Po9d2Ru0YYBHVZZWRMVQtARW4II5YaBpHoIU3nRbOC7c0NbeY5TJJFXiYhQJY70g9FGRfjXvZ8K6gJLtHZY0XH70093BJCJDK');
                 const body = {
                     name: posts[index].productName,
                     details: posts[index].caption,
