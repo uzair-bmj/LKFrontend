@@ -24,7 +24,7 @@ function App() {
       {loader ? <Spinner /> : <>
         <Router>
           <div className="grid grid-cols-[auto,1fr] h-screen">
-            <SideNavbar />
+            <SideNavbar className="hidden sm:block" />
             <div className="flex-grow p-4 ml-0 sm:ml-[20vw] md:ml-[15vw]">
               <Routes>
                 <Route path='/' element={<Home />} />
@@ -35,7 +35,7 @@ function App() {
                 <Route path='/admin/users' element={<Users />} />
                 <Route path='/payments/successfull' element={<PaymentSuccessfull />} />
                 <Route path='/payments/cancelled' element={<PaymentCancelled />} />
-                
+
               </Routes>
             </div>
           </div>

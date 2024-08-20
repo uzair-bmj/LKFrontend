@@ -63,7 +63,7 @@ export default function Post({
 
     return (
         <React.Fragment>
-            <div className={`${Class} flex flex-col bg-white max-w-2xl px-5 py-5 rounded-lg gap-y-3`}>
+            <div className={`${Class} flex flex-col bg-white w-full sm:w-[600px] px-3 sm:px-5 py-5 rounded-lg gap-y-3`}>
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-x-3'>
                         <img src={avatar} alt="" className={`w-12 h-12 rounded-full`} />
@@ -120,13 +120,15 @@ export default function Post({
 
                 <div>
                     <h1 className='text-xl font-semibold'>{Name}:</h1>
-                    <h1 className='text-sm w-[600px] break-words'>{!toggelHide ? caption.slice(0, 70) : caption}</h1>
+                    <h1 className='text-sm break-words'>{!toggelHide ? caption.slice(0, 70) : caption}</h1>
+
                     <button onClick={seeMore} className='text-sm'>{btnTxt}</button>
                 </div>
 
-                <div className={`${imgClass} w-[600px] h-96 mx-auto aspect-w-1 aspect-h-1 sm:aspect-w-4 sm:aspect-h-3`}>
+                <div className={`${imgClass} w-full sm:h-96 h-80 mx-auto`}>
                     <img src={postImgUrl} alt="" className={`${imageClass} object-cover w-full h-full rounded-lg`} />
                 </div>
+
 
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-x-3 items-center'>

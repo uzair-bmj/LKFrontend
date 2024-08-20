@@ -189,12 +189,12 @@ export default function Home() {
 
     return (
         <React.Fragment>
-            <div className='flex flex-col sm:justify-center sm:items-center gap-y-5 mb-16'>
-                <div className='sm:w-[60vw] lg:max-w-2xl'>
+            <div className='flex flex-col sm:justify-center sm:items-center gap-y-5 mb-16 '>
+                <div className='sm:w-[60vw] lg:max-w-2xl w-full'>
                     <TopNavbar />
                 </div>
-                {postSuccess && <PostSuccess class="sm:w-[60vw] lg:max-w-2xl" />}
-                <div className='flex flex-col justify-center w-full items-center gap-5'>
+                {postSuccess && <PostSuccess class="sm:w-[60vw] w-full lg:max-w-2xl" />}
+                <div className='flex flex-col justify-center  items-center gap-5 '>
                     {posts && posts.map((items, index) => {
                         const timeToDisplay = items.createdAt;
                         const sortedComments = items.comments.sort((a, b) =>
@@ -220,7 +220,9 @@ export default function Home() {
                                 clickToBuy={() => makePayment(index)}
                             />
                         );
-                    })}
+                    })
+
+                    }
                     {errorModal && popupMessage && <ErrorModal error={error} errormsg={popupMessage} />}
                 </div>
             </div>

@@ -105,9 +105,9 @@ export default function EditPost() {
                             </div>
                             <div className='flex items-center justify-between mt-3 px-3'>
                                 <div className='flex gap-x-3 items-center'>
-                                    <h1 className='font-bold'>Product Name :</h1>
+                                    <h1 className='font-bold text-sm sm:text-lg'>Product Name :</h1>
                                     <div className="relative mb-5">
-                                        <input id="input-field" value={productName} placeholder="Enter a Product Name" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full" type="text" onChange={(e) => setproductName(e.target.value)} />
+                                        <input id="input-field" value={productName} placeholder="Enter a Product Name" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full" type="text" onChange={(e) => setproductName(e.target.value)} />
                                         <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
                                     </div>
                                 </div>
@@ -146,16 +146,14 @@ export default function EditPost() {
                                     <input id="file" type="file" className="hidden" onChange={handleImageChange} />
                                 </label>
                                 {imagePreview && (
-                                    <div className="w-full flex justify-center">
-                                        <img
-                                            src={imagePreview}
-                                            alt="Preview"
-                                            className="w-[300px] h-[200px] object-cover rounded-lg shadow-lg"
-                                        />
+                                    <div className="sm:block hidden">
+                                        <div className="w-full flex justify-center ">
+                                            <img src={imagePreview} alt="Preview" className="w-[300px] h-[200px] object-cover rounded-lg shadow-lg" />
+                                        </div>
                                     </div>
                                 )}
                             </div>
-                            <div className="flex items-center justify-between mt-3 px-3">
+                            <div className="flex sm:flex-row flex-col items-center justify-between mt-3 px-3">
                                 <div className="flex gap-x-3 items-center">
                                     <h1 className="font-bold">Price :</h1>
                                     <div className="relative mb-5">
@@ -163,8 +161,8 @@ export default function EditPost() {
                                             id="input-field"
                                             required
                                             placeholder="Enter Price"
-                                            className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full"
-                                            type="text"
+                                            className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full"
+                                            type="number"
                                             value={price}
                                             onChange={(e) => setPrice(e.target.value)}
                                         />

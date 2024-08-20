@@ -163,54 +163,54 @@ export default function ApprovedPosts() {
         <React.Fragment>
             <div className='grid grid-cols-[auto,1fr] h-screen'>
                 <DashboardNavbar />
-                <div className='flex flex-col sm:ml-[20vw] md:ml-[20vw] lg:ml-[8vw] gap-y-5'>
-                    <div className='flex justify-between w-full items-center px-44'>
-                        <h1 className='text-xl font-bold'>APPROVED POSTS</h1>
-                        <StyledButton btnTxt="Create a Post" Class="border-2 border-rose-700 text-rose-700 before:bg-rose-700" click={() => setPostForm(true)} />
-                    </div>
-                    {postSuccess && <PostSuccess class="w-full" />}
-                    <div className='flex flex-col  justify-center items-center gap-y-5 gap-x-5 py-5 sm:mb-0 mb-14'>
-                        {posts && posts.map((items, index) => {
-                            // Determine whether to show the created time or the last edited time
-                            const timeToDisplay = items.createdAt;
-                            const sortedComments = items.comments.sort((a, b) =>
-                                new Date(b.createdAt) - new Date(a.createdAt)
-                            );
+                <div className='flex flex-col sm:ml-[35vw] md:ml-[20vw] lg:ml-[8vw] gap-y-3 mt-2'>
+                    <div className='flex flex-col justify-center items-center gap-y-5 gap-x-5 py-5 sm:mb-0 mb-14'>
+                        <div className="flex flex-col sm:flex-row justify-center gap-x-40 items-center gap-y-5">
+                            <h1 className='text-xl font-bold'>APPROVED POSTS</h1>
+                            <StyledButton btnTxt="Create a Post" Class="border-2 border-rose-700 text-rose-700 before:bg-rose-700" click={() => setPostForm(true)} />
+                        </div>
 
-                            return (
-                                <Post
-                                    key={index}
-                                    userName={items.userName}
-                                    avatar={items.userAvatar}
-                                    postTime={formatDistanceToNow(new Date(timeToDisplay), { addSuffix: true })}
-                                    caption={items.caption}
-                                    Name={items.productName}
-                                    postImgUrl={items.postImage}
-                                    postLikes={items.likes}
-                                    comments={sortedComments}
-                                    dropdown
-                                    imgClass=""
-                                    imageClass="object-cover"
-                                    Class="overflow-x-hidden"
-                                    deletePost={() => delPost(index)}
-                                    editPost={() => openEditPostModal(index)}
-                                    changeevent={(e) => setcommentInput(e.target.value)}
-                                    sendComment={() => comment(index)}
-                                    changeeventforLike={(e) => setlikeEvent(e.target.value)}
-                                    click={() => likeApost(index)}
+                        {postSuccess && <PostSuccess class="w-full" />}
+                        <div className='flex flex-col justify-center items-center gap-y-5 gap-x-5 py-5 sm:mb-0 mb-14'>
+                            {posts && posts.map((items, index) => {
+                                const timeToDisplay = items.createdAt;
+                                const sortedComments = items.comments.sort((a, b) =>
+                                    new Date(b.createdAt) - new Date(a.createdAt)
+                                );
 
-                                />
-                            );
-                        })}
-                        {errorModal && popupMessage && <ErrorModal error="Error posting comment" errormsg={popupMessage} />}
-                        {modal && <Modal modalMsg="Post Deleted Successfully" click={closeModal} success btnText="Ok" btnClass="" />}
-
+                                return (
+                                    <Post
+                                        key={index}
+                                        userName={items.userName}
+                                        avatar={items.userAvatar}
+                                        postTime={formatDistanceToNow(new Date(timeToDisplay), { addSuffix: true })}
+                                        caption={items.caption}
+                                        Name={items.productName}
+                                        postImgUrl={items.postImage}
+                                        postLikes={items.likes}
+                                        comments={sortedComments}
+                                        dropdown
+                                        imgClass=""
+                                        imageClass="object-cover"
+                                        Class="overflow-x-hidden"
+                                        deletePost={() => delPost(index)}
+                                        editPost={() => openEditPostModal(index)}
+                                        changeevent={(e) => setcommentInput(e.target.value)}
+                                        sendComment={() => comment(index)}
+                                        changeeventforLike={(e) => setlikeEvent(e.target.value)}
+                                        click={() => likeApost(index)}
+                                    />
+                                );
+                            })}
+                            {errorModal && popupMessage && <ErrorModal error="Error posting comment" errormsg={popupMessage} />}
+                            {modal && <Modal modalMsg="Post Deleted Successfully" click={closeModal} success btnText="Ok" btnClass="" />}
+                        </div>
                     </div>
                 </div>
             </div>
             {PostForm && <Postform />}
             {postEditHook && <EditPost />}
-
         </React.Fragment>
+
     )
 }

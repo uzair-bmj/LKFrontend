@@ -45,7 +45,7 @@ export default function Sales() {
 
         }
         fetchPosts()
-    }, [isSignedIn, nav , totalEarning])
+    }, [isSignedIn, nav, totalEarning])
 
 
 
@@ -73,11 +73,8 @@ export default function Sales() {
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-3 w-full'>
-                        <div className='flex justify-between items-end'>
-                            <h1 className='text-xl font-bold'>Orders</h1>
-
-                        </div>
-                        <div className="bg-white shadow-md rounded-lg w-full h-[50vh] overflow-y-scroll mb-5">
+                        <h1 className='text-xl font-bold sm:text-start text-center'>Orders</h1>
+                        <div className="bg-white shadow-md rounded-lg w-full h-[50vh] overflow-y-scroll mb-20 sm:mb-5">
                             <div className='lg:block hidden'>
                                 <div className="grid grid-cols-5 w-full gap-4 py-4 px-6 bg-rose-700 lg:grid-cols-5">
                                     <h3 className="text-xs md:text-sm font-medium text-white">Customer</h3>

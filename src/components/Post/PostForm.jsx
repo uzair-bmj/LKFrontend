@@ -73,7 +73,7 @@ export default function Postform() {
                 <>
                     <div className='scale-125 fixed top-0 left-0 right-0 bottom-0 ' onClick={() => setPostForm(false)} style={{ background: "rgb(189, 189, 189, 0.9)" }}></div>
                     <form action="" onSubmit={createPost}>
-                        <div className='flex flex-col justify-center gap-y-2 fixed z-10 left-[50%] w-[90vw] top-[50%] transition duration-300 sm:w-[50vw] bg-[white] rounded-lg shadow-lg py-4 px-4' style={{ transform: "translate(-50% , -50%)" }}>
+                        <div className='flex flex-col justify-center gap-y-2 fixed z-10 left-[50%] w-[90vw] top-[50%] transition duration-300 sm:w-[70vw] md:w-[50vw] bg-[white] rounded-lg shadow-lg py-4 px-4' style={{ transform: "translate(-50% , -50%)" }}>
                             <div className='flex justify-between items-center'>
                                 <p></p>
                                 <h1 className='text-xl font-bold text-center'>Create a Post</h1>
@@ -81,9 +81,9 @@ export default function Postform() {
                             </div>
                             <div className='flex items-center justify-between mt-3 px-3'>
                                 <div className='flex gap-x-3 items-center'>
-                                    <h1 className='font-bold'>Product Name :</h1>
+                                    <h1 className='font-bold text-sm sm:text-lg'>Product Name :</h1>
                                     <div className="relative mb-5">
-                                        <input id="input-field" required placeholder="Enter a Product Name" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full" type="text" onChange={(e) => setProductName(e.target.value)} />
+                                        <input id="input-field" required placeholder="Enter a Product Name" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full" type="text" onChange={(e) => setProductName(e.target.value)} />
                                         <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
                                     </div>
                                 </div>
@@ -103,16 +103,18 @@ export default function Postform() {
                                     <input id="file" type="file" className="hidden" onChange={handleImageChange} />
                                 </label>
                                 {imagePreview && (
-                                    <div className="w-full flex justify-center">
-                                        <img src={imagePreview} alt="Preview" className="w-[300px] h-[200px] object-cover rounded-lg shadow-lg" />
+                                    <div className="sm:block hidden">
+                                        <div className="w-full flex justify-center ">
+                                            <img src={imagePreview} alt="Preview" className="w-[300px] h-[200px] object-cover rounded-lg shadow-lg" />
+                                        </div>
                                     </div>
                                 )}
                             </div>
-                            <div className='flex items-center justify-between mt-3 px-3'>
+                            <div className='flex sm:flex-row flex-col items-center justify-between mt-3 px-3'>
                                 <div className='flex gap-x-3 items-center'>
                                     <h1 className='font-bold'>Price :</h1>
                                     <div className="relative mb-5">
-                                        <input id="input-field" required placeholder="Enter Price in usd" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-full" type="number" onChange={(e) => setPrice(e.target.value)} />
+                                        <input id="input-field" required placeholder="Enter Price in usd" className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full" type="number" onChange={(e) => setPrice(e.target.value)} />
                                         <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
                                     </div>
                                 </div>
@@ -125,8 +127,7 @@ export default function Postform() {
                                             <button className='px-4 py-2'>Post</button>
 
                                     }
-                                    {/* <div className='-ms-4'>
-                                    </div> */}
+
                                 </div>
                             </div>
                         </div>

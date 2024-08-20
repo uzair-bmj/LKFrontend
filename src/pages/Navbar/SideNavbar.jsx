@@ -75,9 +75,7 @@ export default function SideNavbar() {
                     <li>
                         <RiAdminFill size="25px" className={` ${location.pathname === '/admin' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300`} onClick={() => navigation('/admin')} />
                     </li>
-                    <li>
-                        <i class={`fa-solid fa-gear ${location.pathname === "/profile" ? "text-rose-700" : "text-gray-400"} hover:transition hover:duration-300  hover:text-rose-700 text-[25px]`} onClick={() => navigation('/profile')}></i>
-                    </li>
+                    
                 </ul>
             </div>
             {errorModal && <ErrorModal error={error} errormsg="Please Login first" />}
