@@ -140,8 +140,8 @@ export default function Home() {
     const makePayment = async (index) => {
         if (isSignedIn) {
             try {
-                setsmallLoader(true)
-                const stripe = await loadStripe('pk_test_51Po9d2Ru0YYBHVZZWRMVQtARW4II5YaBpHoIU3nRbOC7c0NbeY5TJJFXiYhQJY70g9FGRfjXvZ8K6gJLtHZY0XH70093BJCJDK');
+                setsmallLoader(true);
+                const stripe = await loadStripe('your-stripe-publishable-key');
                 const body = {
                     name: posts[index].productName,
                     details: posts[index].caption,
@@ -157,7 +157,7 @@ export default function Home() {
                     }
                 };
                 const headers = {
-                    "content-type": "application/json"
+                    "Content-Type": "application/json"
                 };
 
                 const response = await fetch(`https://lk-1-pabn.onrender.com/api/create-checkout-session`, {
@@ -165,23 +165,33 @@ export default function Home() {
                     headers,
                     body: JSON.stringify(body)
                 });
+
+                // Check if the response is an HTML error page
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("text/html")) {
+                    const errorText = await response.text();
+                    console.error("Received an HTML response instead of JSON:", errorText);
+                    setsmallLoader(false);
+                    return;
+                }
+
                 const session = await response.json();
                 const result = await stripe.redirectToCheckout({
                     sessionId: session.id
                 });
-                setsmallLoader(false)
+                setsmallLoader(false);
+
                 if (result.error) {
                     console.log(result.error.message);
                 }
             } catch (error) {
-                setsmallLoader(false)
-                console.log(error);
-
+                setsmallLoader(false);
+                console.log("Error in makePayment:", error);
             }
         } else {
-            seterrorModal(true)
-            seterror("Checkout Error")
-            setpopupMessage("Please Login First")
+            seterrorModal(true);
+            seterror("Checkout Error");
+            setpopupMessage("Please Login First");
         }
     };
 
