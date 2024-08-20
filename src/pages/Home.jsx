@@ -137,6 +137,7 @@ export default function Home() {
 
     };
 
+
     const makePayment = async (index) => {
         if (isSignedIn) {
             try {
@@ -156,29 +157,26 @@ export default function Home() {
                         name: user.username
                     }
                 };
-                const headers = {
-                    "Content-Type": "application/json"
-                };
 
-                const response = await fetch(`https://lk-1-pabn.onrender.com/api/create-checkout-session`, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(body)
+                const response = await post('https://lk-1-pabn.onrender.com/api/create-checkout-session', body, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 });
 
                 // Check if the response is an HTML error page
-                const contentType = response.headers.get("content-type");
+                const contentType = response.headers['content-type'];
                 if (contentType && contentType.includes("text/html")) {
-                    const errorText = await response.text();
-                    console.error("Received an HTML response instead of JSON:", errorText);
+                    console.error("Received an HTML response instead of JSON:", response.data);
                     setsmallLoader(false);
                     return;
                 }
 
-                const session = await response.json();
+                const session = response.data;
                 const result = await stripe.redirectToCheckout({
                     sessionId: session.id
                 });
+
                 setsmallLoader(false);
 
                 if (result.error) {
@@ -186,7 +184,7 @@ export default function Home() {
                 }
             } catch (error) {
                 setsmallLoader(false);
-                console.log("Error in makePayment:", error);
+                console.log("Error in makePayment:", error.response ? error.response.data : error.message);
             }
         } else {
             seterrorModal(true);
