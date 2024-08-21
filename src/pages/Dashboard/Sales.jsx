@@ -29,11 +29,11 @@ export default function Sales() {
         }
         const fetchPosts = async () => {
             const res = await post('/userPosts', { userId: user.id })
-            const approvedPosts = res.data.posts.filter((post) =>
-                post.status.toLowerCase().includes('approved')
-            )
+            // const approvedPosts = res.data.posts.filter((post) =>
+            //     post.status.toLowerCase().includes('approved')
+            // )
 
-            const allPurchases = approvedPosts.flatMap(post => post.purchasedBy);
+            const allPurchases = res.data.posts.flatMap(post => post.purchasedBy);
             setsalesData(allPurchases);
             settotalSales(allPurchases.length);
             const TotalEarning = salesData.reduce((acc, item) => {
