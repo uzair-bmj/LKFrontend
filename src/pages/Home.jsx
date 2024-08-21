@@ -154,6 +154,7 @@ export default function Home() {
                         user: {
                             id: user.id,
                             post: posts[index]._id,
+                            owner: posts[index].email,
                             email: user.emailAddresses[0].emailAddress,
                             userAvatar: user.imageUrl,
                             name: user.username
