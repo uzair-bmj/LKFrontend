@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navlist from '../../components/Navlist'
 import Button from '../../components/Button'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -11,8 +11,16 @@ import ErrorModal from '../../components/Modals/ErrorModal'
 export default function SideNavbar() {
     const { loader, setloader, PostForm, setPostForm, seterrorModal, errorModal } = useContext(MyContext)
     const nav = useNavigate()
-    const { isSignedIn } = useUser()
+    const { user, isSignedIn } = useUser()
+    const [admin, setadmin] = useState(false)
     const [error, seterror] = useState('')
+    useEffect(() => {
+        if (user?.publicMetadata.role == 'admin') {
+            setadmin(true)
+
+        }
+    }, [])
+
     const navigation = (path) => {
         if (isSignedIn) {
             setloader(true)
@@ -40,20 +48,24 @@ export default function SideNavbar() {
                             <div>
                                 <Navlist />
                             </div>
-                            <div className='bg-gray-300 py-[1px] xl:px-20 sm:px-14  rounded'>
-                            </div>
-                            <div>
-                                <ul className='flex flex-col  gap-y-5'>
-                                    {/* <div className='flex gap-x-3 cursor-pointer items-center'>
-                                        <i class={`fa-solid fa-gear ${location.pathname === '/settings' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 `}></i>
-                                        <li className={`${location.pathname === "/settings" ? 'text-black' : "text-gray-400"} hover:text-black  text-md font-medium  `}>Settings</li>
-                                    </div> */}
-                                    <div className='flex gap-x-3 cursor-pointer items-center' onClick={() => navigation('/admin')}>
-                                        <RiAdminFill size="18px" className={` ${location.pathname === '/admin' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300`} />
-                                        <li className={`text-md font-medium ${location.pathname === '/admin' ? 'text-black' : 'text-gray-400'} hover:text-black  hover:transition hover:duration-300`}>Admin</li>
-                                    </div>
-                                </ul>
-                            </div>
+                            {
+                                admin ?
+                                    <>
+                                        <div className='bg-gray-300 py-[1px] xl:px-20 sm:px-14  rounded'>
+                                        </div>
+                                        <div>
+                                            <ul className='flex flex-col  gap-y-5'>
+
+                                                <div className='flex gap-x-3 cursor-pointer items-center' onClick={() => navigation('/admin')}>
+                                                    <RiAdminFill size="18px" className={` ${location.pathname === '/admin' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300`} />
+                                                    <li className={`text-md font-medium ${location.pathname === '/admin' ? 'text-black' : 'text-gray-400'} hover:text-black  hover:transition hover:duration-300`}>Admin</li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </>
+                                    : null
+                            }
+
 
                         </div>
 
@@ -65,17 +77,24 @@ export default function SideNavbar() {
                     <li>
                         <i class={`fa-solid fa-house ${location.pathname === "/" ? "text-rose-700" : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300 text-[25px]`} onClick={() => navigation('/')}></i>
                     </li>
-
-                    <li>
-                        <i class={`fa-solid fa-table-list ${location.pathname === "/dashboard/approvedposts" ? "text-rose-700" : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300 text-[25px]`} onClick={() => navigation('/dashboard/approvedposts')}></i>
-                    </li>
                     <li>
                         <i class={`fa-regular fa-square-plus hover:transition hover:text-rose-700 hover:duration-300 text-[25px]`} onClick={() => setPostForm(true)}></i>
                     </li>
                     <li>
-                        <RiAdminFill size="25px" className={` ${location.pathname === '/admin' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300`} onClick={() => navigation('/admin')} />
+                        <i class={`fa-solid fa-table-list ${location.pathname === "/dashboard/approvedposts" ? "text-rose-700" : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300 text-[25px]`} onClick={() => navigation('/dashboard/approvedposts')}></i>
                     </li>
-                    
+
+                    {
+                        admin ?
+                            <>
+                                <li>
+                                    <RiAdminFill size="25px" className={` ${location.pathname === '/admin' ? 'text-rose-700' : "text-gray-400"} hover:text-rose-700 hover:transition hover:duration-300`} onClick={() => navigation('/admin')} />
+                                </li>
+
+                            </> : null
+                    }
+
+
                 </ul>
             </div>
             {errorModal && <ErrorModal error={error} errormsg="Please Login first" />}
