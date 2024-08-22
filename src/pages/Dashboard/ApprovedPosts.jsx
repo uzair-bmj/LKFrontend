@@ -29,11 +29,11 @@ export default function ApprovedPosts() {
                 const approvedPosts = res.data.posts.filter((posts) =>
                     posts.status.toLowerCase().includes('approved')
                 )
-                console.log(approvedPosts);
+                // console.log(approvedPosts);
                 const sortedPosts = approvedPosts.sort((a, b) =>
                     new Date(b.createdAt) - new Date(a.createdAt)
                 );
-                console.log(sortedPosts);
+                // console.log(sortedPosts);
                 setposts(sortedPosts)
             } catch (error) {
                 console.log(error);
@@ -55,7 +55,7 @@ export default function ApprovedPosts() {
         }
         try {
             const res = await put('/post/deletePost', delObj)
-            console.log(res);
+            // console.log(res);
 
         } catch (error) {
             console.log(error);
@@ -90,7 +90,7 @@ export default function ApprovedPosts() {
             setposts(updatedPosts);
 
             const res = await put('/post/like', likeObj);
-            console.log(res);
+            // console.log(res);
         } catch (error) {
             console.log(error);
             // Rollback optimistic UI update in case of error
@@ -109,7 +109,7 @@ export default function ApprovedPosts() {
         }
     };
     const comment = async (index) => {
-        console.log(commentInput);
+        // console.log(commentInput);
 
         const commentObj = {
             userId,
@@ -154,7 +154,7 @@ export default function ApprovedPosts() {
             postPrice: posts[index].price
         }
         seteditPostObjHook(editPostObj)
-        console.log(editPostObjHook);
+        // console.log(editPostObjHook);
         setpostEditHook(true)
 
     }

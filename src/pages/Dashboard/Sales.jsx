@@ -39,7 +39,7 @@ export default function Sales() {
             const TotalEarning = salesData.reduce((acc, item) => {
                 return acc += item.amount
             }, 0)
-            console.log(TotalEarning);
+            // console.log(TotalEarning);
             settotalEarning(TotalEarning)
 
 

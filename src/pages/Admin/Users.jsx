@@ -21,7 +21,7 @@ export default function Users() {
         const fetchUsers = async () => {
             try {
                 const res = await get('/user/getAll')
-                console.log(res);
+                // console.log(res);
                 setusers(res.data.users)
                 settotalUsers(users.length)
             } catch (error) {

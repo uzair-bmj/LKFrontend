@@ -17,7 +17,6 @@ export default function SideNavbar() {
     useEffect(() => {
         if (user?.publicMetadata.role == 'admin') {
             setadmin(true)
-
         }
     }, [])
 

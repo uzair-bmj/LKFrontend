@@ -10,7 +10,7 @@ export default function TopNavbar() {
 
     useEffect(() => {
         if (user) {
-            console.log('User data:', user);
+            // console.log('User data:', user);
             localStorage.setItem('userId', user.id);
             localStorage.setItem('userAvatar', user.imageUrl);
             localStorage.setItem('userName', user.username);

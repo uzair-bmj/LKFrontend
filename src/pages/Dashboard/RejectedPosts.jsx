@@ -26,11 +26,11 @@ export default function RejectedPosts() {
             const rejectedPosts = res.data.posts.filter((posts) =>
                 posts.status.toLowerCase().includes('rejected')
             )
-            console.log(rejectedPosts);
+            // console.log(rejectedPosts);
             const sortedPosts = rejectedPosts.sort((a, b) =>
                 new Date(b.createdAt) - new Date(a.createdAt)
             );
-            console.log(sortedPosts);
+            // console.log(sortedPosts);
             setPosts(sortedPosts)
 
         }
@@ -47,7 +47,7 @@ export default function RejectedPosts() {
         }
         try {
             const res = await put('/post/deletePost', delObj)
-            console.log(res);
+            // console.log(res);
 
         } catch (error) {
             console.log(error.response.data.message);

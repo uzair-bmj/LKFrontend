@@ -31,7 +31,7 @@ export default function Home() {
                 const sortedPosts = approvedPosts.sort((a, b) =>
                     new Date(b.createdAt) - new Date(a.createdAt)
                 );
-                console.log(sortedPosts);
+                // console.log(sortedPosts);
 
                 setposts(sortedPosts);
             } catch (error) {
@@ -66,19 +66,10 @@ export default function Home() {
                 setposts(updatedPosts);
 
                 const res = await put('/post/like', likeObj);
-                console.log(res);
+                // console.log(res);
             } catch (error) {
                 console.log(error.response.data.message);
-                // if (error.response.data.message === "No user found") {
-                //     seterrorModal(true)
-                //     setsmallLoader(false)
-                //     setpopupMessage("Login first")
-                // } else {
-                //     seterrorModal(true)
-                //     setsmallLoader(false)
-                //     setpopupMessage(error.response.data.message)
-                // }
-
+                
                 // Rollback optimistic UI update in case of error
                 const updatedPosts = [...posts];
                 const userIndex = updatedPosts[index].likedBy.indexOf(userId);
@@ -102,7 +93,7 @@ export default function Home() {
     };
 
     const comment = async (index) => {
-        console.log(commentInput);
+        // console.log(commentInput);
 
         const commentObj = {
             userId,

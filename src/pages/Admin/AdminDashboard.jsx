@@ -35,7 +35,7 @@ export default function AdminDashboard() {
         const sortedPosts = pendingPosts.sort((a, b) =>
           new Date(b.createdAt) - new Date(a.createdAt)
         );
-        console.log(sortedPosts);
+        // console.log(sortedPosts);
 
         setposts(sortedPosts);
       } catch (error) {
@@ -60,7 +60,7 @@ export default function AdminDashboard() {
     } else {
       setSelectedPostIds((prev) => prev.filter((id) => id !== postId)); // Remove postId from array
     }
-    console.log(selectedPostIds);
+    // console.log(selectedPostIds);
 
   };
   const approvePost = async () => {
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
     setloader(true)
     try {
       const res = await put('/post/statusUpdate', statusObj)
-      console.log(res);
+      // console.log(res);
       setSelectedPostIds([])
       setloader(false)
       if (res) {
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
     setloader(true)
     try {
       const res = await put('/post/statusUpdate', statusObj)
-      console.log(res);
+      // console.log(res);
       setSelectedPostIds([])
       setloader(false)
       if (res) {
