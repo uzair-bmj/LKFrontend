@@ -8,10 +8,11 @@ import ApprovedPosts from './pages/Dashboard/ApprovedPosts';
 import RejectedPosts from './pages/Dashboard/RejectedPosts';
 import Sales from './pages/Dashboard/Sales';
 import AdminDashboard from './pages/Admin/AdminDashboard';
-import Users from './pages/Admin/Users';
+import Users from './pages/Admin/Posts';
 import Spinner from './components/Loaders/Spinner';
 import PaymentSuccessfull from './pages/PaymentSuccessfull';
 import PaymentCancelled from './pages/PaymentCancelled';
+import Posts from './pages/Admin/Posts';
 
 function App() {
   const { loader, setloader } = useContext(MyContext)
@@ -32,7 +33,7 @@ function App() {
                 <Route path='/dashboard/rejectedPosts' element={<RejectedPosts />} />
                 <Route path='/dashboard/sales' element={<Sales />} />
                 <Route path='/admin' element={<AdminDashboard />} />
-                <Route path='/admin/users' element={<Users />} />
+                <Route path='/admin/posts' element={<Posts />} />
                 <Route path='/payments/successfull' element={<PaymentSuccessfull />} />
                 <Route path='/payments/cancelled' element={<PaymentCancelled />} />
 

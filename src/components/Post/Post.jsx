@@ -10,6 +10,8 @@ import SmallLoader from '../Loaders/SmallLoader';
 import StripeCheckout from 'react-stripe-checkout';
 import { post } from '../../api'
 import { useUser } from '@clerk/clerk-react';
+import StyledButton from '../StyledButton';
+import Button from '../Button';
 
 export default function Post({
     userName,
@@ -31,7 +33,8 @@ export default function Post({
     editPost,
     deletePost,
     changeeventforLike,
-    clickToBuy
+    clickToBuy,
+    deleteButton
 }) {
     const [toggelHide, setToggelHide] = useState(false);
     const [showAllComments, setShowAllComments] = useState(false);
@@ -73,6 +76,10 @@ export default function Post({
                         </div>
                     </div>
                     <div className='flex gap-x-3 items-center'>
+                        {
+                            deleteButton &&
+                            <Button name="Delete Button" click={deletePost} />
+                        }
                         {
                             smallLoader ?
                                 <div className='py-1'>

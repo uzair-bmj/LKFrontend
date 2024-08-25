@@ -28,10 +28,18 @@ export default function AdminDashboardNavbar() {
                         <div className='flex flex-col justify-between items-center gap-y-8 '>
                             <div className='w-full flex flex-col gap-y-5'>
                                 <h1 className='text-3xl font-bold text-center sm:mt-0 mt-12'>ADMIN</h1>
-                                {/* <div className={`flex gap-x-3 items-center w-full justify-center ${location.pathname === "/admin/users" ? "bg-rose-400" : "bg-transparent"}  hover:bg-rose-400 hover:transition-all hover:duration-500 px-4 py-4 cursor-pointer`} onClick={() => navigation("/admin/users")}>
-                                    <i class="fa-solid fa-users text-[18px]" ></i>
-                                    <p className='font-medium'>Users</p>
-                                </div> */}
+                                <div className='flex flex-col gap-y-3'>
+                                    
+                                    <div className={`flex gap-x-3 items-center w-full justify-center ${location.pathname === "/admin" ? "bg-rose-400" : "bg-transparent"}  hover:bg-rose-400 hover:transition-all hover:duration-500 px-4 py-4 cursor-pointer`} onClick={() => navigation("/admin")}>
+                                        <i class="fa-solid fa-table-list text-[18px]" ></i>
+                                        <p className='font-medium'>Dashboard</p>
+                                    </div>
+                                    <div className={`flex gap-x-3 items-center w-full justify-center ${location.pathname === "/admin/posts" ? "bg-rose-400" : "bg-transparent"}  hover:bg-rose-400 hover:transition-all hover:duration-500 px-4 py-4 cursor-pointer`} onClick={() => navigation("/admin/posts")}>
+                                        <i class="fa-solid fa-users text-[18px]" ></i>
+                                        <p className='font-medium'>Posts</p>
+                                    </div>
+                                </div>
+
                             </div>
                             <div className='w-full fixed bottom-32 sm:bottom-5'>
                                 <div className={`flex gap-x-3 items-center w-full justify-center ${location.pathname === "/" ? "bg-rose-400" : "bg-transparent"}  hover:bg-rose-400 hover:transition-all hover:duration-500 px-4 py-4 cursor-pointer`} onClick={() => navigation("/")}>
