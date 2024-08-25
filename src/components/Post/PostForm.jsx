@@ -71,7 +71,7 @@ export default function Postform() {
         <React.Fragment>
             {PostForm &&
                 <>
-                    <div className='scale-125 fixed top-0 left-0 right-0 bottom-0 ' onClick={() => setPostForm(false)} style={{ background: "rgb(189, 189, 189, 0.9)" }}></div>
+                    <div className='scale-125 fixed top-0 left-0 right-0 bottom-0 ' style={{ background: "rgb(189, 189, 189, 0.9)" }}></div>
                     <form action="" onSubmit={createPost}>
                         <div className='flex flex-col justify-center gap-y-2 fixed z-10 left-[50%] w-[90vw] top-[50%] transition duration-300 sm:w-[70vw] md:w-[50vw] bg-[white] rounded-lg shadow-lg py-4 px-4' style={{ transform: "translate(-50% , -50%)" }}>
                             <div className='flex justify-between items-center'>
