@@ -52,6 +52,7 @@ export default function Posts() {
         const delObj = {
             postid: posts[index]._id
         }
+        setloader(true)
         try {
             const res = await put('/post/deletePost', delObj)
             // console.log(res);
@@ -59,7 +60,6 @@ export default function Posts() {
             if (res) {
                 setmodal(true)
             }
-
         } catch (error) {
             setloader(false)
             console.log(error);
