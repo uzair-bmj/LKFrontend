@@ -78,7 +78,7 @@ export default function Post({
                     <div className='flex gap-x-3 items-center'>
                         {
                             deleteButton &&
-                            <Button name="Delete Button" click={deletePost} />
+                            <Button name="Delete Post" click={deletePost} />
                         }
                         {
                             smallLoader ?

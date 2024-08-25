@@ -49,15 +49,19 @@ export default function Posts() {
 
 
     const delPost = async (index) => {
-        setmodal(true)
         const delObj = {
             postid: posts[index]._id
         }
         try {
             const res = await put('/post/deletePost', delObj)
             // console.log(res);
+            setloader(false)
+            if (res) {
+                setmodal(true)
+            }
 
         } catch (error) {
+            setloader(false)
             console.log(error);
 
         }
