@@ -29,13 +29,15 @@ export default function AdminDashboard() {
     const fetchPosts = async () => {
       try {
         const res = await get('/post');
+        // console.log(res);
+
         const pendingPosts = res.data.posts.filter((item) =>
           item.status.toLowerCase().includes("pending")
         );
         const sortedPosts = pendingPosts.sort((a, b) =>
           new Date(b.createdAt) - new Date(a.createdAt)
         );
-        // console.log(sortedPosts);
+        console.log(sortedPosts);
 
         setposts(sortedPosts);
       } catch (error) {
@@ -66,8 +68,11 @@ export default function AdminDashboard() {
   const approvePost = async () => {
     const statusObj = {
       postIds: selectedPostIds,
+      emails: posts.map(post => post.userDetails.email),
       status: "approved"
     }
+    console.log(statusObj);
+    
     setloader(true)
     try {
       const res = await put('/post/statusUpdate', statusObj)
@@ -142,12 +147,12 @@ export default function AdminDashboard() {
                         <input type="checkbox" onChange={(e) => handleCheckboxChange(e, items._id)}
                           checked={selectedPostIds.includes(items._id)} className='cursor-pointer lg:block hidden' />
                         <img
-                          src={items.userAvatar}
+                          src={items.userDetails.avatarUrl}
                           alt=""
                           className="w-6 h-6 rounded-full sm:block hidden"
                         />
                         <h1 className="text-xs md:text-lg font-medium text-gray-800 flex-grow">
-                          {items.userName}
+                          {items.userDetails.userName}
                         </h1>
                       </div>
                     </div>
@@ -178,7 +183,7 @@ export default function AdminDashboard() {
                       />
                     </div>
                     <div className="sm:mb-4 flex justify-between  gap-x-5 w-full items-center">
-                      <p className="text-xs lg:hidden block font-medium text-gray-500">Caption:</p>
+                      <p className="text-xs lg:hidden block font-medium text-gray-500">Price:</p>
                       <h1 className="text-xs md:text-lg font-medium text-gray-800">
                         {items.price}
                       </h1>

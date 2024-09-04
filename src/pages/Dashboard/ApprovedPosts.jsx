@@ -12,10 +12,11 @@ import ErrorModal from '../../components/Modals/ErrorModal'
 import EditPost from '../../components/Post/EditPost'
 import { useUser } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
+import DiscountModal from '../../components/Post/DiscountModal'
 
 
 export default function ApprovedPosts() {
-    const { PostForm, setPostForm, userId, setuserId, postSuccess, setpostSuccess, loader, setloader, smallLoader, setsmallLoader, modal, setmodal, postEditHook, setpostEditHook, editPostObjHook, seteditPostObjHook, errorModal, seterrorModal } = useContext(MyContext)
+    const { PostForm, setPostForm, userId, setuserId, postSuccess, setpostSuccess, loader, setloader, smallLoader, setsmallLoader, modal, setmodal, postEditHook, setpostEditHook, editPostObjHook, seteditPostObjHook, errorModal, seterrorModal, discountModal, setdiscountModal } = useContext(MyContext)
     const [popupMessage, setpopupMessage] = useState('')
     const [posts, setposts] = useState([]);
     const [commentInput, setcommentInput] = useState('');
@@ -158,6 +159,14 @@ export default function ApprovedPosts() {
         setpostEditHook(true)
 
     }
+    const openDiscountModal = (index) => {
+        const editPostObj = {
+            postId: posts[index]._id,
+            postPrice: posts[index].price
+        }
+        seteditPostObjHook(editPostObj)
+        setdiscountModal(true)
+    }
 
     return (
         <React.Fragment>
@@ -181,8 +190,8 @@ export default function ApprovedPosts() {
                                 return (
                                     <Post
                                         key={index}
-                                        userName={items.userName}
-                                        avatar={items.userAvatar}
+                                        userName={items.userDetails.userName}
+                                        avatar={items.userDetails.avatarUrl}
                                         postTime={formatDistanceToNow(new Date(timeToDisplay), { addSuffix: true })}
                                         caption={items.caption}
                                         Name={items.productName}
@@ -199,6 +208,7 @@ export default function ApprovedPosts() {
                                         sendComment={() => comment(index)}
                                         changeeventforLike={(e) => setlikeEvent(e.target.value)}
                                         click={() => likeApost(index)}
+                                        discounts={() => openDiscountModal(index)}
                                     />
                                 );
                             })}
@@ -210,6 +220,7 @@ export default function ApprovedPosts() {
             </div>
             {PostForm && <Postform />}
             {postEditHook && <EditPost />}
+            {discountModal && <DiscountModal />}
         </React.Fragment>
 
     )

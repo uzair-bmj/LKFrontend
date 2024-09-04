@@ -25,13 +25,15 @@ export default function Home() {
         const fetchPosts = async () => {
             try {
                 const res = await get('/post');
+                console.log(res);
+                
                 const approvedPosts = res.data.posts.filter((item) =>
                     item.status.toLowerCase().includes("approved")
                 );
                 const sortedPosts = approvedPosts.sort((a, b) =>
                     new Date(b.createdAt) - new Date(a.createdAt)
                 );
-                // console.log(sortedPosts);
+                console.log(sortedPosts);
 
                 setposts(sortedPosts);
             } catch (error) {
@@ -132,7 +134,7 @@ export default function Home() {
 
     const makePayment = async (index) => {
         if (isSignedIn) {
-            if (posts[index].userId != user.id) {
+            if (posts[index].clerkUserId != user.id) {
                 try {
                     setsmallLoader(true)
                     const stripe = await loadStripe('pk_test_51Po9d2Ru0YYBHVZZWRMVQtARW4II5YaBpHoIU3nRbOC7c0NbeY5TJJFXiYhQJY70g9FGRfjXvZ8K6gJLtHZY0XH70093BJCJDK');
@@ -145,17 +147,15 @@ export default function Home() {
                         user: {
                             id: user.id,
                             post: posts[index]._id,
-                            owner: posts[index].useremail,
+                            owner: posts[index].userDetails.email,
                             email: user.emailAddresses[0].emailAddress,
-                            userAvatar: user.imageUrl,
-                            name: user.username
                         }
                     };
                     const headers = {
                         "content-type": "application/json"
                     };
 
-                    const response = await fetch("https://lk-1-pabn.onrender.com/api/create-checkout-session", {
+                    const response = await fetch("http://localhost:5000/api/create-checkout-session", {
                         method: 'POST',
                         headers,
                         body: JSON.stringify(body)
@@ -207,8 +207,8 @@ export default function Home() {
                         return (
                             <Post
                                 key={index}
-                                userName={items.userName}
-                                avatar={items.userAvatar}
+                                userName={items.userDetails.userName}
+                                avatar={items.userDetails.avatarUrl}
                                 postTime={formatDistanceToNow(new Date(timeToDisplay), { addSuffix: true })}
                                 Name={items.productName}
                                 caption={items.caption}

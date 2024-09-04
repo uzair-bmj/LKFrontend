@@ -4,6 +4,7 @@ import Button from '../Button';
 import { put } from "../../api"; // Use PUT instead of POST for updating the post
 import SmallLoader from '../Loaders/SmallLoader';
 import ErrorModal from '../Modals/ErrorModal';
+import { useUser } from '@clerk/clerk-react';
 
 export default function EditPost() {
     const {
@@ -24,7 +25,9 @@ export default function EditPost() {
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [price, setPrice] = useState('');
+    const [discount, setdiscount] = useState('');
     const [productName, setproductName] = useState('')
+    const { user } = useUser()
     // Use useEffect to set the initial state with the values from editPostObjHook
     useEffect(() => {
         if (editPostObjHook) {
@@ -154,21 +157,24 @@ export default function EditPost() {
                                 )}
                             </div>
                             <div className="flex sm:flex-row flex-col items-center justify-between mt-3 px-3">
-                                <div className="flex gap-x-3 items-center">
-                                    <h1 className="font-bold">Price :</h1>
-                                    <div className="relative mb-5">
-                                        <input
-                                            id="input-field"
-                                            required
-                                            placeholder="Enter Price"
-                                            className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full"
-                                            type="number"
-                                            value={price}
-                                            onChange={(e) => setPrice(e.target.value)}
-                                        />
-                                        <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
+                                <div className='flex  gap-5 justify-between'>
+                                    <div className="flex gap-x-3 items-center">
+                                        <h1 className="font-bold">Price :</h1>
+                                        <div className="relative mb-5">
+                                            <input
+                                                id="input-field"
+                                                required
+                                                placeholder="Enter Price"
+                                                className="peer block py-1 text-base border-b-2 border-gray-300 bg-transparent outline-none transition-all duration-300 w-32 sm:w-full"
+                                                type="number"
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)}
+                                            />
+                                            <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rose-700 transition-all duration-300 peer-focus:w-full"></span>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div className='flex justify-center items-center w-32 gap-x-3 bg-rose-700 rounded-full hover:bg-rose-400 hover:text-rose-700 text-white' onClick={updatePost}>
                                     {
                                         smallLoader ?

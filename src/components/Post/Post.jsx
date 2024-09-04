@@ -34,7 +34,8 @@ export default function Post({
     deletePost,
     changeeventforLike,
     clickToBuy,
-    deleteButton
+    deleteButton,
+    discounts
 }) {
     const [toggelHide, setToggelHide] = useState(false);
     const [showAllComments, setShowAllComments] = useState(false);
@@ -116,6 +117,14 @@ export default function Post({
                                                     Delete Post
                                                 </a>
                                                 <i className="fa-solid fa-trash"></i>
+                                            </div>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <div className='flex justify-between items-center cursor-pointer px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900' onClick={discounts}>
+                                                <a href="#" className="" >
+                                                    Discounts
+                                                </a>
+                                                <i className="fa-solid fa-tag"></i>
                                             </div>
                                         </MenuItem>
                                     </div>

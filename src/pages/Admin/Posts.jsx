@@ -184,8 +184,8 @@ export default function Posts() {
                                 return (
                                     <Post
                                         key={index}
-                                        userName={items.userName}
-                                        avatar={items.userAvatar}
+                                        userName={items.userDetails.userName}
+                                        avatar={items.userDetails.avatarUrl}
                                         postTime={formatDistanceToNow(new Date(timeToDisplay), { addSuffix: true })}
                                         caption={items.caption}
                                         Name={items.productName}
