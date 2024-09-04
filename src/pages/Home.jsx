@@ -155,7 +155,7 @@ export default function Home() {
                         "content-type": "application/json"
                     };
 
-                    const response = await fetch("http://localhost:5000/api/create-checkout-session", {
+                    const response = await fetch("https://lk-1-pabn.onrender.com/api/create-checkout-session", {
                         method: 'POST',
                         headers,
                         body: JSON.stringify(body)
