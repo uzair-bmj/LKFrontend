@@ -149,6 +149,7 @@ export default function Home() {
                             post: posts[index]._id,
                             owner: posts[index].userDetails.email,
                             email: user.emailAddresses[0].emailAddress,
+                            name: user.username
                         }
                     };
                     const headers = {
