@@ -70,7 +70,7 @@ export default function Home() {
                 const res = await put('/post/like', likeObj);
                 // console.log(res);
             } catch (error) {
-                console.log(error.response.data.message);
+                console.log(error);
                 
                 // Rollback optimistic UI update in case of error
                 const updatedPosts = [...posts];
@@ -185,11 +185,6 @@ export default function Home() {
             setpopupMessage("Please Login First")
         }
     };
-
-
-
-
-
 
     return (
         <React.Fragment>
